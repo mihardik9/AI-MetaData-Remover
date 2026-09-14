@@ -1,6 +1,6 @@
 {
   "name": "AI Metadata Remover",
-  "description": "Instant client-side removal of AI metadata, EXIF tags, C2PA Content Credentials, and prompts from images with 100% quality retention.",
+  "description": "Instant client-side removal of AI metadata and image prompts, plus an AI Hyphen Remover to remove or replace unnecessary em/en dashes in AI-generated text.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
