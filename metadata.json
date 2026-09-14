@@ -1,0 +1,6 @@
+{
+  "name": "AI Metadata Remover",
+  "description": "Instant client-side removal of AI metadata, EXIF tags, C2PA Content Credentials, and prompts from images with 100% quality retention.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
