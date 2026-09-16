@@ -6,7 +6,7 @@ export const ThemeToggle: React.FC = () => {
     if (typeof window !== 'undefined') {
       const stored = localStorage.getItem('theme');
       if (stored) return stored === 'dark';
-      return window.matchMedia('(prefers-color-scheme: dark)').matches;
+      return document.documentElement.classList.contains('dark') || window.matchMedia('(prefers-color-scheme: dark)').matches;
     }
     return false;
   });
@@ -29,12 +29,18 @@ export const ThemeToggle: React.FC = () => {
       onClick={() => setIsDark((prev) => !prev)}
       aria-label={isDark ? 'Switch to Day mode' : 'Switch to Night mode'}
       title={isDark ? 'Switch to Day mode' : 'Switch to Night mode'}
-      className="p-2 rounded-xl text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors border border-neutral-200 dark:border-neutral-700 flex items-center justify-center shadow-2xs"
+      className="p-2 sm:px-3 sm:py-1.5 rounded-xl text-neutral-700 dark:text-neutral-200 hover:text-neutral-900 dark:hover:text-white bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-all border border-neutral-200 dark:border-neutral-700 flex items-center gap-1.5 shadow-2xs text-xs font-semibold select-none cursor-pointer"
     >
       {isDark ? (
-        <Sun className="w-4 h-4 text-amber-400 transition-transform rotate-0" />
+        <>
+          <Sun className="w-4 h-4 text-amber-400" />
+          <span className="hidden md:inline">Day</span>
+        </>
       ) : (
-        <Moon className="w-4 h-4 text-neutral-700 transition-transform rotate-0" />
+        <>
+          <Moon className="w-4 h-4 text-neutral-700 dark:text-neutral-200" />
+          <span className="hidden md:inline">Night</span>
+        </>
       )}
     </button>
   );
