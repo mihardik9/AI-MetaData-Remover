@@ -20,12 +20,24 @@ import { MetadataModal } from './components/MetadataModal';
 import { ThemeToggle } from './components/ThemeToggle';
 import { SeoKnowledgeSection } from './components/SeoKnowledgeSection';
 import { HyphenRemover } from './components/HyphenRemover';
+import { useRouter, Link } from './lib/router';
+import { getSeoConfigForPath } from './lib/seoConfig';
+import { useSeoHead } from './lib/useSeoHead';
 
 export default function App() {
-  const [activeTool, setActiveTool] = useState<'image' | 'hyphen'>('image');
+  const { pathname, navigate } = useRouter();
+  const routeConfig = getSeoConfigForPath(pathname);
+  useSeoHead(routeConfig);
+
+  const [activeTool, setActiveTool] = useState<'image' | 'hyphen'>(routeConfig.activeTool);
   const [currentImage, setCurrentImage] = useState<ProcessedImage | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const [inspectImage, setInspectImage] = useState<ProcessedImage | null>(null);
+
+  // Sync active tool state with route changes
+  useEffect(() => {
+    setActiveTool(routeConfig.activeTool);
+  }, [routeConfig.activeTool, pathname]);
 
   const [config, setConfig] = useState<SanitizationConfig>({
     format: 'auto',
@@ -190,24 +202,35 @@ export default function App() {
     setCurrentImage(null);
   };
 
+  const handleTabSwitch = (tool: 'image' | 'hyphen') => {
+    setActiveTool(tool);
+    if (tool === 'hyphen') {
+      navigate('/ai-hyphen-remover');
+    } else {
+      if (pathname === '/ai-hyphen-remover') {
+        navigate('/');
+      }
+    }
+  };
+
   return (
     <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 flex flex-col font-sans selection:bg-neutral-900 dark:selection:bg-neutral-100 selection:text-white dark:selection:text-neutral-950 transition-colors duration-200">
       {/* Top Navbar */}
       <header className="sticky top-0 z-40 bg-white/90 dark:bg-neutral-900/90 backdrop-blur-md border-b border-neutral-200 dark:border-neutral-800 transition-colors">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-neutral-900 dark:bg-neutral-100 flex items-center justify-center text-white dark:text-neutral-900 shadow-xs">
+          <Link to="/" className="flex items-center gap-3 group focus:outline-none" aria-label="AIremover Homepage">
+            <div className="w-9 h-9 rounded-xl bg-neutral-900 dark:bg-neutral-100 flex items-center justify-center text-white dark:text-neutral-900 shadow-xs group-hover:scale-105 transition-transform">
               <ShieldCheck className="w-5 h-5 stroke-[2]" />
             </div>
             <div>
               <span className="font-extrabold text-neutral-900 dark:text-neutral-100 text-base tracking-tight block leading-tight">
-                AI Metadata Remover
+                AIremover
               </span>
               <span className="text-[11px] text-neutral-500 dark:text-neutral-400 font-medium">
-                100% Quality • Client-Side Sanitizer
+                AI Tag &amp; Metadata Remover
               </span>
             </div>
-          </div>
+          </Link>
 
           <div className="flex items-center gap-2.5 sm:gap-3">
             {/* 100% Client-Side Privacy Badge */}
@@ -233,8 +256,8 @@ export default function App() {
             <button
               type="button"
               id="tab-image-metadata"
-              onClick={() => setActiveTool('image')}
-              className={`px-3.5 sm:px-5 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition-all ${
+              onClick={() => handleTabSwitch('image')}
+              className={`px-3.5 sm:px-5 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition-all cursor-pointer ${
                 activeTool === 'image'
                   ? 'bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-50 shadow-xs'
                   : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100'
@@ -247,8 +270,8 @@ export default function App() {
             <button
               type="button"
               id="tab-hyphen-remover"
-              onClick={() => setActiveTool('hyphen')}
-              className={`px-3.5 sm:px-5 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition-all ${
+              onClick={() => handleTabSwitch('hyphen')}
+              className={`px-3.5 sm:px-5 py-2 rounded-lg text-xs sm:text-sm font-bold flex items-center gap-2 transition-all cursor-pointer ${
                 activeTool === 'hyphen'
                   ? 'bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-50 shadow-xs'
                   : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100'
@@ -266,14 +289,13 @@ export default function App() {
             <section aria-labelledby="main-heading" className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
               <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-neutral-200/70 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 rounded-full text-xs font-semibold mb-3">
                 <Sparkles className="w-3.5 h-3.5 text-neutral-900 dark:text-neutral-100" />
-                <span>100% Quality Preserved • Prompts & C2PA Purged</span>
+                <span>{routeConfig.badgeText}</span>
               </div>
               <h1 id="main-heading" className="text-3xl sm:text-4xl font-extrabold text-neutral-900 dark:text-neutral-50 tracking-tight leading-tight">
-                Clean AI Metadata & Tags Instantly
+                {routeConfig.h1}
               </h1>
               <p className="mt-3 text-sm sm:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed">
-                Upload any image generated by Midjourney, Stable Diffusion, DALL-E 3, Flux, or ComfyUI.
-                Instantly download the clean image with all AI prompts and provenance manifests permanently removed at identical visual quality.
+                {routeConfig.subtitle}
               </p>
             </section>
 
@@ -293,7 +315,7 @@ export default function App() {
                   <button
                     type="button"
                     onClick={handleReset}
-                    className="text-xs font-semibold text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 inline-flex items-center gap-1 transition-colors"
+                    className="text-xs font-semibold text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 inline-flex items-center gap-1 transition-colors cursor-pointer"
                   >
                     <RefreshCw className="w-3 h-3" />
                     <span>Upload New Image</span>
@@ -319,7 +341,7 @@ export default function App() {
                       <ShieldCheck className="w-5 h-5 stroke-[2]" />
                     </div>
                     <h3 className="font-bold text-neutral-900 dark:text-neutral-100 text-sm mb-1">
-                      Erase Prompts & Seeds
+                      Erase Prompts &amp; Seeds
                     </h3>
                     <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">
                       Strips embedded positive/negative prompts, seed numbers, sampler settings, and ComfyUI workflow graphs from PNG text chunks and EXIF.
@@ -343,7 +365,7 @@ export default function App() {
                       <Lock className="w-5 h-5 stroke-[2]" />
                     </div>
                     <h3 className="font-bold text-neutral-900 dark:text-neutral-100 text-sm mb-1">
-                      100% Private & Browser-Based
+                      100% Private &amp; Browser-Based
                     </h3>
                     <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">
                       Processes locally in your device memory. No photos, prompts, or data are ever uploaded to any external server.
@@ -354,24 +376,52 @@ export default function App() {
             )}
 
             {/* Semantic SEO & AI Search Engine Knowledge & FAQ Section */}
-            <SeoKnowledgeSection />
+            <SeoKnowledgeSection routeConfig={routeConfig} />
           </>
         ) : (
-          <HyphenRemover />
+          <>
+            <HyphenRemover />
+            {/* Provide knowledge & internal links for Hyphen Remover too */}
+            <SeoKnowledgeSection routeConfig={routeConfig} />
+          </>
         )}
       </main>
 
       {/* Footer */}
-      <footer className="mt-auto border-t border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 py-6 transition-colors">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-neutral-500 dark:text-neutral-400">
-          <div className="flex items-center gap-2">
-            <span className="font-semibold text-neutral-800 dark:text-neutral-200">AI Metadata & Hyphen Remover</span>
-            <span>•</span>
-            <span>100% Client-Side Privacy & Lossless Processing</span>
+      <footer className="mt-auto border-t border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 py-8 transition-colors">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 space-y-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-neutral-500 dark:text-neutral-400">
+            <div className="flex items-center gap-2">
+              <span className="font-semibold text-neutral-800 dark:text-neutral-200">AIremover</span>
+              <span>•</span>
+              <span>Online AI Tag Remover &amp; Metadata Cleaner</span>
+            </div>
+
+            <div className="text-center md:text-right text-neutral-500 dark:text-neutral-400">
+              100% Client-Side Privacy • Lossless Processing for Midjourney, SD, DALL-E &amp; Flux
+            </div>
           </div>
 
-          <div className="text-neutral-500 dark:text-neutral-400">
-            Image Sanitizer (Flux, SD, Midjourney, DALL-E) & AI Dash Humanizer
+          {/* Crawlable Footer Navigation */}
+          <div className="pt-4 border-t border-neutral-100 dark:border-neutral-800/80 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-neutral-600 dark:text-neutral-400">
+            <Link to="/" className="hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">
+              Home
+            </Link>
+            <Link to="/ai-tag-remover" className="hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">
+              AI Tag Remover
+            </Link>
+            <Link to="/ai-metadata-remover" className="hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">
+              AI Metadata Remover
+            </Link>
+            <Link to="/ai-hyphen-remover" className="hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">
+              AI Hyphen Remover
+            </Link>
+            <Link to="/remove-ai-metadata" className="hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">
+              Remove AI Metadata
+            </Link>
+            <Link to="/remove-ai-metadata-from-images" className="hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">
+              Remove AI Metadata from Images
+            </Link>
           </div>
         </div>
       </footer>

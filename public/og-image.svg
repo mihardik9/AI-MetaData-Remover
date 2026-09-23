@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" fill="none">
+  <rect width="1200" height="630" fill="#0A0A0A"/>
+  
+  <!-- Subtle background grid -->
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#262626" stroke-width="1" stroke-opacity="0.4"/>
+    </pattern>
+    <linearGradient id="shieldGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#A3A3A3"/>
+    </linearGradient>
+    <linearGradient id="badgeGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#10B981" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#059669" stop-opacity="0.05"/>
+    </linearGradient>
+  </defs>
+  
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <!-- Brand Icon -->
+  <g transform="translate(100, 140)">
+    <rect width="96" height="96" rx="24" fill="#171717" stroke="#333333" stroke-width="2"/>
+    <path d="M48 18L26 27V46C26 62.5 35.5 77.2 48 82C60.5 77.2 70 62.5 70 46V27L48 18Z" stroke="url(#shieldGrad)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M38 49L45 56L58 41" stroke="#10B981" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Privacy Badge -->
+  <g transform="translate(220, 160)">
+    <rect width="320" height="44" rx="22" fill="url(#badgeGrad)" stroke="#10B981" stroke-opacity="0.4" stroke-width="1.5"/>
+    <circle cx="24" cy="22" r="5" fill="#10B981"/>
+    <text x="42" y="27" fill="#34D399" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="700" letter-spacing="1">100% PRIVATE • IN-BROWSER</text>
+  </g>
+
+  <!-- Main Headline -->
+  <text x="100" y="310" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="64" font-weight="800" letter-spacing="-1.5">
+    AI Tag Remover
+  </text>
+  
+  <text x="100" y="375" fill="#A3A3A3" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="28" font-weight="400">
+    Remove AI Metadata, Prompts, EXIF &amp; C2PA Tags Online Free
+  </text>
+
+  <!-- Feature Pills -->
+  <g transform="translate(100, 440)">
+    <!-- Pill 1 -->
+    <rect width="260" height="52" rx="14" fill="#171717" stroke="#262626" stroke-width="1.5"/>
+    <text x="24" y="32" fill="#E5E5E5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="600">✓ 100% Lossless Quality</text>
+
+    <!-- Pill 2 -->
+    <g transform="translate(280, 0)">
+      <rect width="280" height="52" rx="14" fill="#171717" stroke="#262626" stroke-width="1.5"/>
+      <text x="24" y="32" fill="#E5E5E5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="600">✓ Zero Server Uploads</text>
+    </g>
+
+    <!-- Pill 3 -->
+    <g transform="translate(580, 0)">
+      <rect width="320" height="52" rx="14" fill="#171717" stroke="#262626" stroke-width="1.5"/>
+      <text x="24" y="32" fill="#E5E5E5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="600">✓ AI Hyphen &amp; Dash Purger</text>
+    </g>
+  </g>
+
+  <!-- URL Brand Footer -->
+  <text x="100" y="560" fill="#737373" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="600">
+    https://airemover.online/
+  </text>
+</svg>

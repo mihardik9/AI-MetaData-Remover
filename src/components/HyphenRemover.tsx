@@ -536,17 +536,17 @@ export const HyphenRemover: React.FC = () => {
             Why Remove AI Em Dashes & Hyphens?
           </h2>
           <p className="mt-2 text-xs sm:text-sm text-neutral-600 dark:text-neutral-400">
-            Learn why AI models overuse dashes and how humanizing punctuation improves clarity and bypasses AI detection flags.
+            Learn why AI models overuse dashes and how natural punctuation restores professional editorial flow.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="p-4 rounded-xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 shadow-2xs">
             <h3 className="font-bold text-sm text-neutral-900 dark:text-neutral-100 mb-1">
-              Bypasses AI Writing Markers
+              Restores Human Cadence
             </h3>
             <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">
-              ChatGPT and Claude models rely excessively on parenthetical em dashes (—) for rhythmic balance. AI content detectors frequently use dash frequency as a key signal for synthetic writing.
+              ChatGPT and Claude models frequently insert repetitive em dashes (—) for parenthetical thoughts. Replacing them restores a balanced, natural editorial rhythm.
             </p>
           </div>
 
@@ -555,7 +555,7 @@ export const HyphenRemover: React.FC = () => {
               Natural Sentence Flow
             </h3>
             <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">
-              Instead of clumsy pauses that interrupt readability, the smart engine converts clauses to standard commas, colons, or clean transitions aligned with professional editorial standards.
+              Instead of clumsy pauses that interrupt readability, the smart engine converts clauses to standard commas, colons, or clean transitions aligned with professional style guides.
             </p>
           </div>
 
