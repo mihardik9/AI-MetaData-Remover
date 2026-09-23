@@ -13,6 +13,7 @@ This document outlines the technical SEO architecture, canonical routes, structu
 | **Robots Directives** | `https://airemover.online/robots.txt` | Crawler permissions and sitemap pointer |
 | **Social Card (OG Image)**| `https://airemover.online/og-image.svg` | 1200x630 vector preview asset for Open Graph / Twitter |
 | **Brand Favicon** | `https://airemover.online/favicon.svg` | Scalable vector favicon & apple-touch-icon |
+| **Google Tag (GA4)** | `G-CZTG75H895` | Global site tag for traffic analytics & SPA pageviews |
 
 ---
 

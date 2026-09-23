@@ -103,6 +103,15 @@ export function useSeoHead(config: RouteSeoConfig) {
     script.textContent = JSON.stringify(structuredDataArray);
     document.head.appendChild(script);
 
+    // 7. Google Analytics SPA Page View Tracking
+    if (typeof (window as any).gtag === 'function') {
+      (window as any).gtag('event', 'page_view', {
+        page_title: config.title,
+        page_location: config.canonicalUrl,
+        page_path: config.path,
+      });
+    }
+
     return () => {
       // Clean up script tag on unmount if needed
     };
