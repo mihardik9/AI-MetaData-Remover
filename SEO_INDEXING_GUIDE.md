@@ -18,91 +18,87 @@ This document outlines the technical SEO architecture, canonical routes, structu
 
 ---
 
-## 2. Indexable Canonical Routes
+## 2. Unique Indexable Canonical Routes & Search Intents
 
-All URLs are canonicalized to `https://airemover.online` with HTTPS and consistent trailing-slash normalization:
+Every indexable URL on `https://airemover.online` has been engineered with a completely unique search intent, distinct `<title>`, unique meta description, dedicated `<h1>`, tailored structured data (JSON-LD), and custom editorial content without paragraph duplication or keyword stuffing:
 
 1. **`https://airemover.online/`**
    - **Primary Search Intent:** AI Metadata Remover
    - **Title:** `AI Metadata Remover – Remove Hidden Metadata Online | Airemover`
-   - **Meta Description:** `Remove AI metadata, EXIF data, author information and hidden file tags online with Airemover. Clean supported images quickly and securely with 100% privacy.`
    - **H1:** `AI Metadata Remover`
+   - **Meta Description:** `Remove AI metadata, EXIF data, author information and hidden file tags online with Airemover. Clean supported images quickly and securely with 100% privacy.`
+   - **UI Behavior:** Clean, unobstructed original layout with no visible SEO knowledge sections.
 
 2. **`https://airemover.online/ai-metadata-remover`**
-   - **Title:** `AI Metadata Remover – Strip Prompts, Seeds & EXIF Online | AIremover`
-   - **Meta Description:** `Remove AI metadata including generation prompts, negative prompts, seeds, ComfyUI workflows, and EXIF parameters from images at 100% visual quality.`
-   - **H1:** `AI Metadata Remover`
+   - **Primary Search Intent:** Remove AI-generated image metadata and generation parameters.
+   - **Title:** `AI Metadata Remover – Strip Prompts, Seeds & Parameters | AIremover`
+   - **H1:** `AI Metadata Remover: Remove AI Generation Parameters`
+   - **Meta Description:** `Remove AI-generated image metadata, text prompts, negative prompts, seeds, CFG settings, and ComfyUI workflow JSON from PNG, JPG, and WebP images with 100% privacy.`
+   - **Unique Focus:** Generation parameters (CFG, sampler, steps, seed), positive/negative prompts, ComfyUI workflow graphs, what is removed, supported formats, and limitations.
 
 3. **`https://airemover.online/image-metadata-remover`**
-   - **Title:** `Image Metadata Remover – Remove EXIF, GPS & Hidden Tags | AIremover`
-   - **Meta Description:** `Free online image metadata remover. Clean EXIF data, GPS coordinates, camera specs, and AI tags from PNG, JPEG, WebP, and AVIF images with 100% quality.`
-   - **H1:** `Image Metadata Remover`
+   - **Primary Search Intent:** General image metadata removal (non-AI focused).
+   - **Title:** `Image Metadata Remover – Clean EXIF, GPS & Photo Tags | AIremover`
+   - **H1:** `Image Metadata Remover: Strip EXIF, GPS & Camera Tags`
+   - **Meta Description:** `Free online image metadata remover. Clean EXIF data, GPS coordinates, camera specs, timestamps, and editing history from PNG, JPG, WebP, and AVIF photos.`
+   - **Unique Focus:** EXIF, GPS, camera equipment info, capture timestamps, author and software editing logs, and supported formats.
 
 4. **`https://airemover.online/exif-remover`**
-   - **Title:** `EXIF Remover – Remove EXIF Data from Photos Online Free | AIremover`
-   - **Meta Description:** `Remove EXIF data, camera settings, timestamps, and GPS geotags from photos online for free. Clean EXIF tags securely in your browser with AIremover.`
-   - **H1:** `EXIF Remover`
+   - **Primary Search Intent:** Specific EXIF removal.
+   - **Title:** `EXIF Remover – Strip Camera Settings, GPS & Timestamps | AIremover`
+   - **H1:** `EXIF Remover: Delete Camera Specs, Geotags & Timestamps`
+   - **Meta Description:** `Remove EXIF data, camera model, lens specifications, exposure values, timestamps, and GPS coordinates from photos for free. Clean EXIF tags securely in your browser.`
+   - **Unique Focus:** Technical EXIF standard, camera bodies, lens serials, exposure values (aperture, shutter speed, ISO), GPS coordinates, and real-world privacy risks of geotagging.
 
 5. **`https://airemover.online/remove-metadata-online`**
-   - **Title:** `Remove Metadata Online – Free Hidden Metadata Cleaner | AIremover`
-   - **Meta Description:** `Remove metadata online for free. Strip hidden EXIF tags, AI generation prompts, and author information from supported image files with AIremover.`
-   - **H1:** `Remove Metadata Online`
+   - **Primary Search Intent:** General online metadata removal.
+   - **Title:** `Remove Metadata Online – Free In-Browser Metadata Scrubber | AIremover`
+   - **H1:** `Remove Metadata Online: Fast, Secure In-Browser Sanitization`
+   - **Meta Description:** `Remove metadata online for free. Understand what metadata is, supported file types, and how client-side in-browser processing scrubs files with zero server uploads.`
+   - **Unique Focus:** Explains what metadata is, supported metadata standards (EXIF, IPTC, XMP, C2PA), how in-browser RAM manipulation works, and realistic sanitization limitations.
 
-6. **`https://airemover.online/ai-tag-remover`**
-   - **Title:** `AI Tag Remover – Strip AI Tags & Prompts Online Free | AIremover`
-   - **Meta Description:** `Free online AI tag remover to purge embedded AI tags, generation prompts, seed parameters, and provenance markers from images without quality loss.`
-   - **H1:** `AI Tag Remover`
+6. **`https://airemover.online/remove-ai-metadata`**
+   - **Primary Search Intent:** Strategic and educational guide to removing AI metadata.
+   - **Title:** `How to Remove AI Metadata – Complete Guide & Online Tool | AIremover`
+   - **H1:** `How to Remove AI Metadata from Generated Media`
+   - **Meta Description:** `Discover how and why to remove AI metadata from generated media. Purge synthetic flags, generation parameters, and provenance markers with Airemover's private tool.`
+   - **Unique Focus:** Why artists and creators remove AI metadata, how various generative engines (Midjourney, Stable Diffusion, DALL-E, Flux) tag outputs, synthetic provenance vs camera EXIF, and step-by-step verification.
 
-7. **`https://airemover.online/ai-hyphen-remover`**
+7. **`https://airemover.online/remove-ai-metadata-from-images`**
+   - **Primary Search Intent:** Format-level AI metadata excision from images.
+   - **Title:** `Remove AI Metadata from Images – PNG, JPG & WebP Sanitizer | AIremover`
+   - **H1:** `Remove AI Metadata from Images: Lossless PNG, JPG & WebP Cleaner`
+   - **Meta Description:** `Remove AI metadata specifically from images. Learn how PNG chunks, JPEG markers, and WebP containers store AI prompts, and strip them at 100% image quality.`
+   - **Unique Focus:** Format-level container architectures: PNG ancillary chunks (tEXt, zTXt, iTXt), JPEG APP markers (APP1, APP11 C2PA), WebP RIFF chunks, and AVIF ISOBMFF meta boxes.
+
+8. **`https://airemover.online/ai-tag-remover`**
+   - **Primary Search Intent:** AI identification and header tag metadata removal.
+   - **Title:** `AI Tag Remover – Strip AI Identification Tags & Header Flags | AIremover`
+   - **H1:** `AI Tag Remover: Purge AI Tags, Labels & Prompt Identifiers`
+   - **Meta Description:** `Strip AI identification tags, generation labels, and synthetic media markers from image headers. Accurate, realistic client-side tag removal with zero quality loss.`
+   - **Unique Focus:** Strictly truthful capabilities: deletes file header tags, software attribution, and provenance manifests. Explicitly notes boundaries regarding invisible pixel-level watermarks.
+
+9. **`https://airemover.online/ai-hyphen-remover`**
+   - **Primary Search Intent:** Text cleaning & AI em/en dash removal.
    - **Title:** `AI Hyphen Remover – Clean Em Dashes & En Dashes in AI Text | AIremover`
+   - **H1:** `AI Hyphen Remover: Eliminate Robotic Em Dashes from AI Text`
    - **Meta Description:** `Remove repetitive em dashes (—), en dashes (–), and unnecessary hyphens from ChatGPT, Claude, and AI-generated text for natural, human readability.`
-   - **H1:** `AI Hyphen Remover`
-
-8. **`https://airemover.online/remove-ai-metadata`**
-   - **Title:** `Remove AI Metadata – Free Online Tool for AI Files | AIremover`
-   - **Meta Description:** `Learn how to remove AI metadata and provenance tags from your files online. Free, fast, and 100% private client-side metadata cleaner.`
-   - **H1:** `Remove AI Metadata`
-
-9. **`https://airemover.online/remove-ai-metadata-from-images`**
-   - **Title:** `Remove AI Metadata from Images – PNG, JPEG, WebP | AIremover`
-   - **Meta Description:** `Remove AI metadata from images (PNG, JPEG, WebP, AVIF) at 100% original quality. Strip C2PA credentials, Midjourney prompts, and Stable Diffusion EXIF.`
-   - **H1:** `Remove AI Metadata from Images`
+   - **Unique Focus:** Completely separated from image metadata. Focuses entirely on LLM writing traits, em dash overuse, natural punctuation replacement, and compound word preservation.
 
 ---
 
-## 3. Structured Data (Schema.org JSON-LD)
+## 3. Google Search Console & Indexing Steps
 
-The application embeds valid JSON-LD metadata for search engines and AI assistants across every route:
+1. **Verify Sitemap in GSC**:
+   - Go to Google Search Console -> **Sitemaps**.
+   - Submit: `sitemap.xml`.
+   - Ensure Status shows **Success** with 9 discovered URLs.
 
-- **`WebSite`**: Primary brand name, canonical HTTPS URL, and query capabilities.
-- **`WebApplication`**: Specific tool name, operating systems, requirements, and free offer (`price: "0"`).
-- **`BreadcrumbList`**: Clean hierarchical breadcrumb structure linking back to home.
-- **`FAQPage`**: Dynamic entity rendering containing visible questions & answers matching on-page FAQs.
-
----
-
-## 4. Google Search Console Setup & Verification Steps
-
-To ensure complete indexation by Googlebot:
-
-1. **Sign In to Google Search Console:**
-   - Navigate to [search.google.com/search-console](https://search.google.com/search-console).
-   - Select **URL prefix** and enter `https://airemover.online/`.
-2. **Verify Ownership:**
-   - HTML tag verification is already enabled in `<head>` via Google Analytics (`G-CZTG75H895`) and Google AdSense (`ca-pub-7813443546025415`). Click **Verify**.
-3. **Submit the XML Sitemap:**
-   - In the left sidebar, click **Sitemaps**.
-   - Under **Add a new sitemap**, type `sitemap.xml` and click **Submit**.
-   - Verify that the status turns green (**Success**).
-4. **Inspect & Request Indexing:**
-   - Paste `https://airemover.online/` into the top search bar (**Inspect any URL**).
-   - Click **Test Live URL** to confirm Googlebot renders the page and receives HTTP 200.
+2. **Inspect & Request Indexing for All 9 URLs**:
+   - For each URL above, paste it into the GSC **URL Inspection** bar.
+   - Click **Test Live URL**.
+   - Verify:
+     - Googlebot can access and fetch (HTTP 200)
+     - User-declared canonical equals Google-selected canonical
+     - Valid Schema.org structured data (WebSite, WebApplication, BreadcrumbList, FAQPage)
    - Click **Request Indexing**.
-   - Repeat for key subpages:
-     - `https://airemover.online/ai-metadata-remover`
-     - `https://airemover.online/image-metadata-remover`
-     - `https://airemover.online/exif-remover`
-     - `https://airemover.online/remove-metadata-online`
-     - `https://airemover.online/ai-tag-remover`
-     - `https://airemover.online/ai-hyphen-remover`
-     - `https://airemover.online/remove-ai-metadata-from-images`

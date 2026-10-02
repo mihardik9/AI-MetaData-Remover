@@ -379,14 +379,18 @@ export default function App() {
               </section>
             )}
 
-            {/* Semantic SEO & AI Search Engine Knowledge & FAQ Section */}
-            <SeoKnowledgeSection routeConfig={routeConfig} />
+            {/* Dedicated SEO Knowledge & FAQ Section - Rendered only on dedicated landing pages, never on homepage */}
+            {routeConfig.path !== '/' && (
+              <SeoKnowledgeSection routeConfig={routeConfig} />
+            )}
           </>
         ) : (
           <>
             <HyphenRemover />
-            {/* Provide knowledge & internal links for Hyphen Remover too */}
-            <SeoKnowledgeSection routeConfig={routeConfig} />
+            {/* Dedicated SEO Knowledge & FAQ Section for Hyphen Remover page */}
+            {routeConfig.path !== '/' && (
+              <SeoKnowledgeSection routeConfig={routeConfig} />
+            )}
           </>
         )}
       </main>
