@@ -21,6 +21,7 @@ import {
   HyphenRemovalResult,
   SAMPLE_TEXTS,
 } from '../lib/hyphenRemover';
+import { AdBanner } from './AdBanner';
 
 export const HyphenRemover: React.FC = () => {
   const [inputText, setInputText] = useState<string>('');
@@ -528,6 +529,9 @@ export const HyphenRemover: React.FC = () => {
           </div>
         </div>
       )}
+
+      {/* Ad Slot */}
+      <AdBanner slot="3517457575" />
 
       {/* Explanatory Article & FAQ for SEO and User Guidance */}
       <section className="mt-12 border-t border-neutral-200 dark:border-neutral-800 pt-10">

@@ -20,6 +20,7 @@ import { MetadataModal } from './components/MetadataModal';
 import { ThemeToggle } from './components/ThemeToggle';
 import { SeoKnowledgeSection } from './components/SeoKnowledgeSection';
 import { HyphenRemover } from './components/HyphenRemover';
+import { AdBanner } from './components/AdBanner';
 import { useRouter, Link } from './lib/router';
 import { getSeoConfigForPath } from './lib/seoConfig';
 import { useSeoHead } from './lib/useSeoHead';
@@ -304,6 +305,9 @@ export default function App() {
               config={config}
               onChangeConfig={setConfig}
             />
+
+            {/* Ad Slot */}
+            <AdBanner slot="3517457575" />
 
             {/* Active Cleaned Image OR Upload DropZone */}
             {currentImage ? (
