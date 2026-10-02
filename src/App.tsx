@@ -411,11 +411,20 @@ export default function App() {
             <Link to="/" className="hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">
               Home
             </Link>
-            <Link to="/ai-tag-remover" className="hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">
-              AI Tag Remover
-            </Link>
             <Link to="/ai-metadata-remover" className="hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">
               AI Metadata Remover
+            </Link>
+            <Link to="/image-metadata-remover" className="hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">
+              Image Metadata Remover
+            </Link>
+            <Link to="/exif-remover" className="hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">
+              EXIF Remover
+            </Link>
+            <Link to="/remove-metadata-online" className="hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">
+              Remove Metadata Online
+            </Link>
+            <Link to="/ai-tag-remover" className="hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">
+              AI Tag Remover
             </Link>
             <Link to="/ai-hyphen-remover" className="hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">
               AI Hyphen Remover

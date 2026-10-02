@@ -49,8 +49,10 @@ export const ImageCard: React.FC<ImageCardProps> = ({
         <div className="w-full aspect-square max-w-[320px] rounded-xl overflow-hidden bg-neutral-200/50 dark:bg-neutral-800 flex items-center justify-center relative shadow-inner border border-neutral-200/80 dark:border-neutral-700/80">
           <img
             src={currentPreviewUrl}
-            alt={image.name}
+            alt={`Cleaned preview of ${image.name} - Metadata removed`}
             className="w-full h-full object-contain"
+            loading="lazy"
+            decoding="async"
             referrerPolicy="no-referrer"
           />
 

@@ -27,7 +27,7 @@ export function useSeoHead(config: RouteSeoConfig) {
     // 1. Page Title
     document.title = config.title;
 
-    // 2. Meta description
+    // 2. Meta description & keywords
     updateMetaTag('meta[name="description"]', 'content', config.metaDescription);
     updateMetaTag('meta[name="keywords"]', 'content', config.keywords);
 
@@ -42,7 +42,7 @@ export function useSeoHead(config: RouteSeoConfig) {
     updateMetaTag('meta[property="og:site_name"]', 'content', 'AIremover');
     updateMetaTag('meta[property="og:image"]', 'content', 'https://airemover.online/og-image.svg');
 
-    // 5. Twitter
+    // 5. Twitter / X
     updateMetaTag('meta[name="twitter:title"]', 'content', config.ogTitle);
     updateMetaTag('meta[name="twitter:description"]', 'content', config.ogDescription);
     updateMetaTag('meta[name="twitter:url"]', 'content', config.canonicalUrl);
@@ -81,6 +81,31 @@ export function useSeoHead(config: RouteSeoConfig) {
           price: '0',
           priceCurrency: 'USD',
         },
+      },
+      {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: config.path === '/' ? [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: 'https://airemover.online/',
+          }
+        ] : [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: 'https://airemover.online/',
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: config.h1,
+            item: config.canonicalUrl,
+          }
+        ],
       },
     ];
 

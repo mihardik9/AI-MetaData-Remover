@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { HelpCircle, ChevronDown, ShieldCheck, Lock, CheckCircle2, FileCode, ArrowRight, Layers } from 'lucide-react';
+import { HelpCircle, ChevronDown, ShieldCheck, Lock, CheckCircle2, FileCode, Camera, Layers, Sparkles } from 'lucide-react';
 import { RouteSeoConfig } from '../lib/seoConfig';
 import { Link } from '../lib/router';
 
@@ -59,7 +59,7 @@ export const SeoKnowledgeSection: React.FC<SeoKnowledgeSectionProps> = ({ routeC
       <article className="max-w-3xl mx-auto mb-14 space-y-8">
         <div className="text-center max-w-2xl mx-auto mb-8">
           <h2 id="knowledge-heading" className="text-2xl sm:text-3xl font-extrabold text-neutral-900 dark:text-neutral-50 tracking-tight">
-            How AI Metadata & Tag Removal Works
+            How Metadata &amp; Tag Removal Works
           </h2>
           <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
             A privacy-first tool designed to protect your creative workflows and remove provenance tracking while preserving 100% visual fidelity.
@@ -91,7 +91,7 @@ export const SeoKnowledgeSection: React.FC<SeoKnowledgeSectionProps> = ({ routeC
             Frequently Asked Questions
           </h2>
           <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">
-            Common questions about AI metadata removal, C2PA Content Credentials, and privacy.
+            Common questions about metadata removal, EXIF cleaner features, C2PA Content Credentials, and privacy.
           </p>
         </div>
 
@@ -101,27 +101,33 @@ export const SeoKnowledgeSection: React.FC<SeoKnowledgeSectionProps> = ({ routeC
             return (
               <div
                 key={idx}
-                className="bg-white dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-800 overflow-hidden shadow-2xs transition-colors"
+                className="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 overflow-hidden transition-all shadow-2xs"
               >
                 <button
                   type="button"
+                  id={`faq-btn-${idx}`}
                   onClick={() => toggleFaq(idx)}
-                  className="w-full text-left p-4 sm:p-5 flex items-center justify-between gap-4 font-semibold text-neutral-900 dark:text-neutral-100 text-sm hover:text-neutral-700 dark:hover:text-neutral-300 transition-colors"
+                  className="w-full px-5 py-4 text-left flex items-center justify-between gap-4 font-semibold text-xs sm:text-sm text-neutral-900 dark:text-neutral-100 hover:bg-neutral-50 dark:hover:bg-neutral-800/50 transition-colors cursor-pointer"
                   aria-expanded={isOpen}
+                  aria-controls={`faq-answer-${idx}`}
                 >
-                  <span>{faq.question}</span>
+                  <span className="flex-1">{faq.question}</span>
                   <ChevronDown
                     className={`w-4 h-4 text-neutral-400 shrink-0 transition-transform duration-200 ${
-                      isOpen ? 'rotate-180 text-neutral-900 dark:text-neutral-100' : ''
+                      isOpen ? 'transform rotate-180' : ''
                     }`}
                   />
                 </button>
-
-                {isOpen && (
-                  <div className="px-4 pb-4 sm:px-5 sm:pb-5 text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed border-t border-neutral-100 dark:border-neutral-800/80 pt-3">
-                    <p>{faq.answer}</p>
-                  </div>
-                )}
+                <div
+                  id={`faq-answer-${idx}`}
+                  role="region"
+                  aria-labelledby={`faq-btn-${idx}`}
+                  className={`px-5 pb-4 text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed ${
+                    isOpen ? 'block' : 'hidden'
+                  }`}
+                >
+                  {faq.answer}
+                </div>
               </div>
             );
           })}
@@ -131,26 +137,9 @@ export const SeoKnowledgeSection: React.FC<SeoKnowledgeSectionProps> = ({ routeC
       {/* Internal Linking: Related Tools & Supporting Pages */}
       <nav aria-label="Related tools navigation" className="max-w-4xl mx-auto pt-6 border-t border-neutral-200 dark:border-neutral-800">
         <h3 className="text-xs font-bold text-neutral-400 uppercase tracking-wider mb-4 text-center">
-          Related AI Privacy Tools & Guides
+          Related Metadata Tools &amp; Guides
         </h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-          <Link
-            to="/ai-tag-remover"
-            className="p-3.5 rounded-xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-600 transition-all group flex items-start gap-3"
-          >
-            <div className="w-8 h-8 rounded-lg bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center shrink-0 group-hover:bg-neutral-900 group-hover:text-white dark:group-hover:bg-neutral-100 dark:group-hover:text-neutral-900 transition-colors">
-              <ShieldCheck className="w-4 h-4" />
-            </div>
-            <div>
-              <span className="text-xs font-bold text-neutral-900 dark:text-neutral-100 block group-hover:underline">
-                AI Tag Remover
-              </span>
-              <span className="text-[11px] text-neutral-500 dark:text-neutral-400 block mt-0.5">
-                Strip AI identification tags and prompts
-              </span>
-            </div>
-          </Link>
-
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           <Link
             to="/ai-metadata-remover"
             className="p-3.5 rounded-xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-600 transition-all group flex items-start gap-3"
@@ -169,24 +158,41 @@ export const SeoKnowledgeSection: React.FC<SeoKnowledgeSectionProps> = ({ routeC
           </Link>
 
           <Link
-            to="/ai-hyphen-remover"
+            to="/image-metadata-remover"
             className="p-3.5 rounded-xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-600 transition-all group flex items-start gap-3"
           >
             <div className="w-8 h-8 rounded-lg bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center shrink-0 group-hover:bg-neutral-900 group-hover:text-white dark:group-hover:bg-neutral-100 dark:group-hover:text-neutral-900 transition-colors">
-              <Layers className="w-4 h-4" />
+              <Camera className="w-4 h-4" />
             </div>
             <div>
               <span className="text-xs font-bold text-neutral-900 dark:text-neutral-100 block group-hover:underline">
-                AI Hyphen Remover
+                Image Metadata Remover
               </span>
               <span className="text-[11px] text-neutral-500 dark:text-neutral-400 block mt-0.5">
-                Clean em dashes & en dashes in text
+                Clean EXIF, GPS & photo tags
               </span>
             </div>
           </Link>
 
           <Link
-            to="/remove-ai-metadata"
+            to="/exif-remover"
+            className="p-3.5 rounded-xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-600 transition-all group flex items-start gap-3"
+          >
+            <div className="w-8 h-8 rounded-lg bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center shrink-0 group-hover:bg-neutral-900 group-hover:text-white dark:group-hover:bg-neutral-100 dark:group-hover:text-neutral-900 transition-colors">
+              <ShieldCheck className="w-4 h-4" />
+            </div>
+            <div>
+              <span className="text-xs font-bold text-neutral-900 dark:text-neutral-100 block group-hover:underline">
+                EXIF Remover
+              </span>
+              <span className="text-[11px] text-neutral-500 dark:text-neutral-400 block mt-0.5">
+                Strip camera settings & timestamps
+              </span>
+            </div>
+          </Link>
+
+          <Link
+            to="/remove-metadata-online"
             className="p-3.5 rounded-xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-600 transition-all group flex items-start gap-3"
           >
             <div className="w-8 h-8 rounded-lg bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center shrink-0 group-hover:bg-neutral-900 group-hover:text-white dark:group-hover:bg-neutral-100 dark:group-hover:text-neutral-900 transition-colors">
@@ -194,10 +200,27 @@ export const SeoKnowledgeSection: React.FC<SeoKnowledgeSectionProps> = ({ routeC
             </div>
             <div>
               <span className="text-xs font-bold text-neutral-900 dark:text-neutral-100 block group-hover:underline">
-                Remove AI Metadata
+                Remove Metadata Online
               </span>
               <span className="text-[11px] text-neutral-500 dark:text-neutral-400 block mt-0.5">
-                Universal guide to stripping AI metadata
+                Free browser-based metadata scrubber
+              </span>
+            </div>
+          </Link>
+
+          <Link
+            to="/ai-tag-remover"
+            className="p-3.5 rounded-xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-600 transition-all group flex items-start gap-3"
+          >
+            <div className="w-8 h-8 rounded-lg bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center shrink-0 group-hover:bg-neutral-900 group-hover:text-white dark:group-hover:bg-neutral-100 dark:group-hover:text-neutral-900 transition-colors">
+              <Sparkles className="w-4 h-4" />
+            </div>
+            <div>
+              <span className="text-xs font-bold text-neutral-900 dark:text-neutral-100 block group-hover:underline">
+                AI Tag Remover
+              </span>
+              <span className="text-[11px] text-neutral-500 dark:text-neutral-400 block mt-0.5">
+                Strip AI identification tags & prompts
               </span>
             </div>
           </Link>
@@ -214,7 +237,41 @@ export const SeoKnowledgeSection: React.FC<SeoKnowledgeSectionProps> = ({ routeC
                 Remove AI Metadata from Images
               </span>
               <span className="text-[11px] text-neutral-500 dark:text-neutral-400 block mt-0.5">
-                Lossless cleaner for PNG, JPG, WebP & AVIF
+                Lossless cleaner for PNG, JPG, WebP
+              </span>
+            </div>
+          </Link>
+
+          <Link
+            to="/remove-ai-metadata"
+            className="p-3.5 rounded-xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-600 transition-all group flex items-start gap-3"
+          >
+            <div className="w-8 h-8 rounded-lg bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center shrink-0 group-hover:bg-neutral-900 group-hover:text-white dark:group-hover:bg-neutral-100 dark:group-hover:text-neutral-900 transition-colors">
+              <CheckCircle2 className="w-4 h-4" />
+            </div>
+            <div>
+              <span className="text-xs font-bold text-neutral-900 dark:text-neutral-100 block group-hover:underline">
+                Remove AI Metadata Guide
+              </span>
+              <span className="text-[11px] text-neutral-500 dark:text-neutral-400 block mt-0.5">
+                Complete guide to stripping AI metadata
+              </span>
+            </div>
+          </Link>
+
+          <Link
+            to="/ai-hyphen-remover"
+            className="p-3.5 rounded-xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-600 transition-all group flex items-start gap-3"
+          >
+            <div className="w-8 h-8 rounded-lg bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center shrink-0 group-hover:bg-neutral-900 group-hover:text-white dark:group-hover:bg-neutral-100 dark:group-hover:text-neutral-900 transition-colors">
+              <Layers className="w-4 h-4" />
+            </div>
+            <div>
+              <span className="text-xs font-bold text-neutral-900 dark:text-neutral-100 block group-hover:underline">
+                AI Hyphen Remover
+              </span>
+              <span className="text-[11px] text-neutral-500 dark:text-neutral-400 block mt-0.5">
+                Clean em dashes & en dashes in text
               </span>
             </div>
           </Link>
